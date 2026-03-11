@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 class Contato extends Controller
 {
-    function contato(){
-        echo 'bardo rei';
+    function index(){
+        return view('pagina-contato');
     }
 
+    
 }
-
-
