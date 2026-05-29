@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ComponenteModel extends Model
 {
     use HasFactory;
-    protected $table = 'componentes';
+    protected $table = 'componente';
     protected $fillable = [
         'nome',
         'hora_inicio',

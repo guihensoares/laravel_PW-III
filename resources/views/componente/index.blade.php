@@ -33,7 +33,10 @@
                             <p>{{ $componente->nome }}</p>
                         </td>
                         <td>
-                            <p>{{ $componente->periodo }}</p>
+                            <p>{{ $componente->hora_inicio }}</p>
+                        </td>
+                        <td>
+                            <p>{{ $componente->hora_fim }}</p>
                         </td>
                         <td>
                             <form action="{{ route('componente.remove', ['id' => $componente->id]) }}" method="GET">
