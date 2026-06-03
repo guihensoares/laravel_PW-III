@@ -6,17 +6,25 @@
     <form action="{{ route('professor.add') }}" method="post">
         @csrf
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
 
         <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" id="telefone">
+        <input type="text" name="telefone" id="telefone" value="{{ old('telefone') }}">
 
         <label for="email">E-mail</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" value="{{ old('email') }}">
 
         <button type="submit">Salvar</button>
         @isset($success)
                 <p>{{ $success }}</p>
+        @endisset
+
+        @isset($errors)
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         @endisset
     </form>
 

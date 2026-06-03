@@ -5,7 +5,7 @@
     <form action="{{ route('curso.add') }}" method="post">
         @csrf
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
 
         <select name="periodo" id="periodo" type="text">
             <option value="diurno">Diurno</option>
@@ -16,6 +16,14 @@
         <button type="submit">Salvar</button>
         @isset($success)
                 <p>{{ $success }}</p>
+        @endisset
+
+        @isset($errors)
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         @endisset
     </form>
 

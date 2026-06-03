@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComponenteController extends Controller
 {
@@ -13,6 +14,29 @@ class ComponenteController extends Controller
     }
 
     function add(Request $dados) {
+        $validator = Validator::make(
+            $dados->all(),
+                [
+                    'nome' => 'required|min:3|max:255',
+                    'hora_inicio' => 'required',
+                    'hora_fim' => 'required',
+                ],
+                [
+                    'nome.required' => 'O campo nome é obrigatório.',
+                    'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
+                    'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+                    'hora_inicio.required' => 'O campo hora início é obrigatório.',
+                    'hora_fim.required' => 'O campo hora fim é obrigatório.',
+                ]
+        );
+        
+        if ($validator->fails()) {
+            return redirect()
+                ->route('componente.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $componente = new \App\Models\ComponenteModel();
         $componente::create($dados->all());
 
