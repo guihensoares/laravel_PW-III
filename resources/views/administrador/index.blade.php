@@ -5,22 +5,22 @@
     <form action="{{ route('administrador.add') }}" method="post">
         @csrf
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value=" {{ old('nome') }} ">
 
         <label for="email">E-mail</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" value=" {{ old('email') }} ">
 
         <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" id="telefone">
+        <input type="text" name="telefone" id="telefone" value=" {{ old('telefone') }} ">
 
         <label for="cpf">Cpf</label>
-        <input type="text" name="cpf" id="cpf">
+        <input type="text" name="cpf" id="cpf" value=" {{ old('cpf') }} ">
 
         <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" id="usuario">
+        <input type="text" name="usuario" id="usuario" value=" {{ old('usuario') }} ">
 
         <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
+        <input type="password" name="senha" id="senha" value=" {{ old('senha') }} ">
 
         <label for="status">Status</label>
         <select name="status" id="status" type="text">
@@ -31,6 +31,14 @@
         <button type="submit">Salvar</button>
         @isset($success)
                 <p>{{ $success }}</p>
+        @endisset
+
+        @isset($errors)
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         @endisset
     </form>
 
