@@ -8,10 +8,10 @@
         <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
 
         <label for="hora_inicio">Hora do Inicio</label>
-        <input type="datetime" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}">
+        <input type="date" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}">
 
         <label for="hora_fim">Hora do Término</label>
-        <input type="datetime" name="hora_fim" id="hora_fim" value="{{ old('hora_fim') }}">
+        <input type="date" name="hora_fim" id="hora_fim" value="{{ old('hora_fim') }}">
 
         <button type="submit">Salvar</button>
         @isset($success)
