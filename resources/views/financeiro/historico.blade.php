@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico</title>
+    <link rel="stylesheet" href="{{ asset('css/financeiro/historico.css') }}">
 </head>
 <body>
 
 <nav>
-    <span>Histórico</span>
-    <a href="{{ route('financeiro.index') }}">📊 Painel do Dia</a>
+    <span>Cariocaldo - Histórico</span>
+    <a href="{{ route('financeiro.index') }}">Painel do Dia</a>
 </nav>
 
 <div class="container">
@@ -25,7 +26,7 @@
             <label>Até</label>
             <input type="date" name="ate" value="{{ request('ate') }}">
         </div>
-        <button type="submit" class="btn btn-verde">🔍 Filtrar</button>
+        <button type="submit" class="btn btn-verde">Filtrar</button>
         <a href="{{ route('financeiro.historico') }}" class="btn btn-cinza">✕ Limpar</a>
     </form>
 
@@ -42,7 +43,7 @@
         <div class="dia">
 
             <div class="dia-header">
-                <strong>📆 {{ \Carbon\Carbon::parse($reg->data)->isoFormat('dddd, D [de] MMMM [de] YYYY') }}</strong>
+                <strong>{{ \Carbon\Carbon::parse($reg->data)->isoFormat('dddd, D [de] MMMM [de] YYYY') }}</strong>
                 <div class="badges">
                     <span class="badge badge-verde">Ganhos R$ {{ number_format($reg->total_ganhos, 2, ',', '.') }}</span>
                     <span class="badge badge-vermelho">Gastos R$ {{ number_format($reg->total_gastos, 2, ',', '.') }}</span>
@@ -94,7 +95,7 @@
                 </div>
 
                 <div class="tabela-secao">
-                    <p>🥤 Vendas</p>
+                    <p>Vendas</p>
                     @if ($reg->vendas->isEmpty())
                         <span style="color:#bbb; font-size:13px;">Nenhuma</span>
                     @else
@@ -117,7 +118,7 @@
             </div>
 
             @if ($reg->observacoes)
-                <div class="obs">📝 <strong>Obs:</strong> {{ $reg->observacoes }}</div>
+                <div class="obs"><strong>Obs:</strong> {{ $reg->observacoes }}</div>
             @endif
 
         </div>

@@ -1,0 +1,353 @@
+@import './historico.css';
+/* =========================
+   HISTÓRICO CALDO DE CANA
+   ========================= */
+
+   :root {
+    --verde-escuro: #2d7a45;
+    --verde-claro: #4aad66;
+    --verde-folha: #3f9b57;
+    --dourado: #d4a843;
+    --terra: #8b5e3c;
+    --vermelho: #c0392b;
+    --cinza: #f4f4f4;
+    --texto: #2c2c2c;
+    --branco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #eaf7ee, #fdfcf7);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+nav {
+    background: linear-gradient(90deg, var(--verde-escuro), var(--verde-claro));
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+nav span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    background: rgba(255,255,255,0.15);
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* =========================
+   CONTAINER
+   ========================= */
+
+.container {
+    max-width: 1300px;
+    margin: 25px auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+}
+
+/* =========================
+   FILTRO
+   ========================= */
+
+.filtro {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
+
+    margin-bottom: 25px;
+}
+
+.filtro div {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+.filtro input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.filtro input:focus {
+    outline: none;
+    border-color: var(--verde-claro);
+    box-shadow: 0 0 5px rgba(74,173,102,.3);
+}
+
+/* =========================
+   BOTÕES
+   ========================= */
+
+.btn {
+    text-decoration: none;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-verde {
+    background: var(--verde-claro);
+    color: white;
+}
+
+.btn-verde:hover {
+    background: var(--verde-escuro);
+}
+
+.btn-cinza {
+    background: #e5e5e5;
+    color: #444;
+}
+
+.btn-cinza:hover {
+    background: #d2d2d2;
+}
+
+/* =========================
+   ESTADO VAZIO
+   ========================= */
+
+.vazio {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    color: #777;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+/* =========================
+   CARD DO DIA
+   ========================= */
+
+.dia {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.dia-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ececec;
+}
+
+.dia-header strong {
+    color: var(--verde-escuro);
+    font-size: 18px;
+}
+
+/* =========================
+   BADGES
+   ========================= */
+
+.badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
+
+.badge-verde {
+    background: var(--verde-claro);
+}
+
+.badge-vermelho {
+    background: var(--vermelho);
+}
+
+.badge-azul {
+    background: var(--verde-escuro);
+}
+
+/* =========================
+   TABELAS
+   ========================= */
+
+.tabelas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.tabela-secao {
+    background: #fafafa;
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tabela-secao p {
+    background: linear-gradient(
+        90deg,
+        var(--verde-escuro),
+        var(--verde-claro)
+    );
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f2f8f4;
+}
+
+th {
+    color: var(--verde-escuro);
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ececec;
+}
+
+tbody tr:hover {
+    background: #f8fff9;
+}
+
+/* =========================
+   OBSERVAÇÕES
+   ========================= */
+
+.obs {
+    margin-top: 18px;
+    padding: 12px;
+    background: #fff9eb;
+    border-left: 5px solid var(--dourado);
+    border-radius: 8px;
+}
+
+/* =========================
+   PAGINAÇÃO
+   ========================= */
+
+.paginacao {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.paginacao nav {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* =========================
+   RESPONSIVO
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .dia-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tabelas {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .filtro {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .badges {
+        width: 100%;
+    }
+
+    .badge {
+        flex: 1;
+        text-align: center;
+    }
+
+    .tabela-secao {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 500px;
+    }
+}

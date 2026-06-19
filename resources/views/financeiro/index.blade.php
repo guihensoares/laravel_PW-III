@@ -6,12 +6,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Painel do Dia</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/financeiro/index.css') }}">
 </head>
 <body>
 
 <nav>
-    <span>🌿 Caldo de Cana — Painel</span>
-    <a href="{{ route('financeiro.historico') }}">📅 Ver Histórico</a>
+    <span>🌿 Cariocaldo — Painel Principal</span>
+    <a href="{{ route('financeiro.historico') }}">Ver Histórico</a>
 </nav>
 
 <div class="container">
@@ -20,23 +21,23 @@
         <div class="alerta">✅ {{ session('sucesso') }}</div>
     @endif
 
-    <h2>📊 Resumo do Dia — {{ date('d/m/Y') }}</h2>
+    <h2>Resumo do Dia — {{ date('d/m/Y') }}</h2>
 
     <div class="cards">
         <div>
-            <p>💰 Ganhos hoje</p>
+            <p>Ganhos hoje</p>
             <strong>R$ {{ number_format($registro->total_ganhos, 2, ',', '.') }}</strong>
         </div>
         <div>
-            <p>💸 Gastos hoje</p>
+            <p>Gastos hoje</p>
             <strong>R$ {{ number_format($registro->total_gastos, 2, ',', '.') }}</strong>
         </div>
         <div class="card {{ $registro->getLucro() >= 0 ? 'azul' : 'vermelho' }}">
-            <p>📈 Lucro hoje</p>
+            <p>Lucro hoje</p>
             <strong>R$ {{ number_format($registro->getLucro(), 2, ',', '.') }}</strong>
         </div>
         <div>
-            <p>🥤 Copos vendidos</p>
+            <p>Copos vendidos</p>
             <strong>{{ $registro->vendas->sum('quantidade') }}</strong>
         </div>
     </div>
@@ -50,15 +51,15 @@
 
     <div class="graficos">
         <div class="grafico-box">
-            <h3>📉 Ganhos × Gastos × Lucro (30 dias)</h3>
+            <h3>Ganhos × Gastos × Lucro (30 dias)</h3>
             <canvas id="graficoLinha" height="180"></canvas>
         </div>
         <div class="grafico-box">
-            <h3>🍩 Gastos por Categoria</h3>
+            <h3>Gastos por Categoria</h3>
             <canvas id="graficoRosca" height="180"></canvas>
         </div>
         <div class="grafico-box">
-            <h3>🥤 Produtos mais vendidos</h3>
+            <h3>Produtos mais vendidos</h3>
             <canvas id="graficoBarra" height="180"></canvas>
         </div>
     </div>
@@ -70,7 +71,7 @@
         <div class="formulario">
 
             <div class="secao">
-                <h3>💰 Ganhos do Dia</h3>
+                <h3>Ganhos do Dia</h3>
                 <div id="lista-ganhos">
                     @foreach ($registro->ganhos as $i => $g)
                     <div class="linha">
@@ -94,7 +95,7 @@
             </div>
 
             <div class="secao">
-                <h3>💸 Gastos do Dia</h3>
+                <h3>Gastos do Dia</h3>
                 <div id="lista-gastos">
                     @foreach ($registro->gastos as $i => $g)
                     <div class="linha">
@@ -131,7 +132,7 @@
             </div>
 
             <div class="secao">
-                <h3>🥤 Vendas do Dia</h3>
+                <h3>Vendas do Dia</h3>
                 <div id="lista-vendas">
                     @foreach ($registro->vendas as $i => $v)
                     <div class="linha">
@@ -158,7 +159,7 @@
         </div>
 
         <div class="secao">
-            <h3>📝 Observações</h3>
+            <h3>Observações</h3>
             <textarea name="observacoes" rows="3" placeholder="Alguma anotação do dia...">{{ $registro->observacoes }}</textarea>
         </div>
 
