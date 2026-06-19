@@ -14,3 +14,9 @@ use App\Http\Middleware\LogAcessoMiddleware;
 */
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
+
+Route::prefix('/financeiro')->group(function () {
+    Route::get('/', [App\Http\Controllers\FinanceiroController::class, 'index'])->name('financeiro.index');
+    Route::post('/salvar', [App\Http\Controllers\FinanceiroController::class, 'salvar'])->name('financeiro.salvar');
+    Route::get('/historico', [App\Http\Controllers\FinanceiroController::class, 'historico'])->name('financeiro.historico');
+});
