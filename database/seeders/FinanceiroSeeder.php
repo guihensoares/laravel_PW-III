@@ -13,25 +13,21 @@ class FinanceiroSeeder extends Seeder
 {
     public function run(): void
     {
-        // Cria 14 dias de dados de exemplo
         for ($i = 13; $i >= 0; $i--) {
 
             $data = date('Y-m-d', strtotime("-{$i} days"));
 
-            // Cria o registro do dia
             $registro = RegistroFinanceiroModel::firstOrCreate(
                 ['data' => $data],
                 ['total_ganhos' => 0, 'total_gastos' => 0]
             );
 
-            // Adiciona um ganho
             GanhosModel::create([
                 'registro_financeiro_id' => $registro->id,
                 'descricao'   => 'Vendas no ponto',
                 'valor'       => rand(80, 250),
             ]);
 
-            // Adiciona dois gastos
             GastosModel::create([
                 'registro_financeiro_id' => $registro->id,
                 'descricao'   => 'Cana de açúcar',
@@ -46,7 +42,6 @@ class FinanceiroSeeder extends Seeder
                 'categoria'   => 'embalagem',
             ]);
 
-            // Adiciona vendas de produtos
             $produtos = [
                 ['nome' => 'Caldo natural',    'preco' => 5.00],
                 ['nome' => 'Caldo com limão',  'preco' => 6.00],
@@ -62,7 +57,6 @@ class FinanceiroSeeder extends Seeder
                 ]);
             }
 
-            // Recalcula os totais do dia
             $registro->calcularTotais();
         }
     }

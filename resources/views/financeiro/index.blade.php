@@ -11,7 +11,8 @@
 <body>
 
 <nav>
-    <span>🌿 Cariocaldo — Painel Principal</span>
+    <img src=" {{ asset('favicon_cana.ico') }} " alt="icone_cana">
+    <span>Cariocaldo — Painel Principal</span>
     <a href="{{ route('financeiro.historico') }}">Ver Histórico</a>
 </nav>
 

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico</title>
     <link rel="stylesheet" href="{{ asset('css/financeiro/historico.css') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon_cana.ico') }}" type="image/x-icon">
 </head>
 <body>
 
 <nav>
+    <img src="{{ asset('favicon_cana.ico') }}" alt="icone_cana">
     <span>Cariocaldo - Histórico</span>
     <a href="{{ route('financeiro.index') }}">Painel do Dia</a>
 </nav>
