@@ -9,17 +9,13 @@ use Illuminate\Http\Request;
 
 class FinanceiroController extends Controller
 {
-    // ─── Página principal ─────────────────────────────────────────────
     public function index()
     {
-        // Pega o registro de hoje, ou cria um novo zerado
         $registro = RegistroFinanceiro::firstOrCreate(
             ['data' => date('Y-m-d')],
             ['total_ganhos' => 0, 'total_gastos' => 0]
         );
         $registro->load(['ganhos', 'gastos', 'vendas']);
-
-        // Pega os últimos 30 dias e monta os arrays dos gráficos
         $ultimos30 = RegistroFinanceiro::where('data', '>=', date('Y-m-d', strtotime('-29 days')))
             ->orderBy('data')
             ->get();
@@ -36,7 +32,6 @@ class FinanceiroController extends Controller
             $lucros[] = (float) $r->total_ganhos - (float) $r->total_gastos;
         }
 
-        // Produtos mais vendidos nos últimos 30 dias
         $topProdutos = Venda::selectRaw('produto, SUM(quantidade) as total_qtd')
             ->whereHas('registro', function ($q) {
                 $q->where('data', '>=', date('Y-m-d', strtotime('-29 days')));
@@ -46,7 +41,6 @@ class FinanceiroController extends Controller
             ->limit(6)
             ->get();
 
-        // Gastos agrupados por categoria
         $gastosCategorias = Gasto::selectRaw('categoria, SUM(valor) as total')
             ->whereHas('registro', function ($q) {
                 $q->where('data', '>=', date('Y-m-d', strtotime('-29 days')));
@@ -54,7 +48,6 @@ class FinanceiroController extends Controller
             ->groupBy('categoria')
             ->get();
 
-        // Totais do mês
         $totalMesGanhos = RegistroFinanceiro::where('data', '>=', date('Y-m-01'))->sum('total_ganhos');
         $totalMesGastos = RegistroFinanceiro::where('data', '>=', date('Y-m-01'))->sum('total_gastos');
 
@@ -64,10 +57,8 @@ class FinanceiroController extends Controller
         ));
     }
 
-    // ─── Salva o formulário ────────────────────────────────────────────
     public function salvar(Request $request)
     {
-        // Pega ou cria o registro do dia
         $registro = RegistroFinanceiro::firstOrCreate(
             ['data' => $request->data],
             ['total_ganhos' => 0, 'total_gastos' => 0]
@@ -75,7 +66,6 @@ class FinanceiroController extends Controller
 
         $registro->update(['observacoes' => $request->observacoes]);
 
-        // Apaga os registros antigos e salva os novos
         $registro->ganhos()->delete();
         foreach ($request->ganhos ?? [] as $g) {
             if (!empty($g['descricao']) && !empty($g['valor'])) {
@@ -102,7 +92,6 @@ class FinanceiroController extends Controller
         return redirect()->route('financeiro.index')->with('sucesso', 'Registro salvo!');
     }
 
-    // ─── Página de histórico ───────────────────────────────────────────
     public function historico(Request $request)
     {
         $query = RegistroFinanceiro::with(['ganhos', 'gastos', 'vendas'])->orderByDesc('data');
@@ -114,4 +103,20 @@ class FinanceiroController extends Controller
 
         return view('financeiro.historico', compact('registros'));
     }
+
+    public function remove($id)
+{
+    $registro = RegistroFinanceiro::findOrFail($id);
+
+    $registro->ganhos()->delete();
+    $registro->gastos()->delete();
+    $registro->vendas()->delete();
+
+    $registro->delete();
+
+    return redirect()
+        ->route('financeiro.historico')
+        ->with('sucesso', 'Registro removido com sucesso!');
+}
+
 }

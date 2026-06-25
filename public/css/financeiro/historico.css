@@ -216,6 +216,28 @@ h2 {
 .badge-vermelho { background: #fce8e8; color: #b83232; }
 .badge-azul     { background: #e8f1fb; color: #1a6fa8; }
 
+.btn-remover {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #000000;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remover:hover {
+    background: #fce8e8;
+    color: #b83232;
+}
+
 /* TABELAS */
 .tabelas {
     display: grid;

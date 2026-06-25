@@ -52,6 +52,16 @@
                     <span class="badge {{ $lucro >= 0 ? 'badge-azul' : 'badge-vermelho' }}">
                         Lucro R$ {{ number_format($lucro, 2, ',', '.') }}
                     </span>
+                    <span>
+                        <form action="{{ route('financeiro.remove', $reg->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-remover"
+                                onclick="return confirm('Deseja realmente excluir este dia?')">
+                                X
+                            </button>
+                        </form>
+                    </span>
                 </div>
             </div>
 
