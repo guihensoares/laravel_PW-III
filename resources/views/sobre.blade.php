@@ -1,0 +1,6 @@
+@extends('layouts.basico')
+
+@section('conteudo')
+    <h1>pagina sobre</h1>
+
+@endsection
